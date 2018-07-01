@@ -4,7 +4,10 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "cd packages/react-scripts && node scripts/build.js",
+    "build": "cd packages/react-scripts && node scripts/build.js && node scripts/Copy.js && node scripts/build-server-prod.js",
+    "copy": "cd packages/react-scripts && node scripts/Copy.js",
+    "build-server": "cd packages/react-scripts && node scripts/build-server.js",
+    "build-server-prod": "cd packages/react-scripts && node scripts/build-server-prod.js",
     "changelog": "lerna-changelog",
     "create-react-app": "node tasks/cra.js",
     "e2e": "tasks/e2e-simple.sh",

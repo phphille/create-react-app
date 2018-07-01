@@ -48,11 +48,16 @@ function getServedPath(appPackageJson) {
 
 // config after eject: we're in ./config/
 module.exports = {
+  /*CUSTOM */
+  backendPath: __dirname + '/../../../../Backend/Knowit.PureEcom.Site/dist',
+  backendBuild: __dirname + '/../../../../Backend/Knowit.PureEcom.Site/dist/build',
+  appServerIndexJs: resolveApp('src/IndexServer.js'),
+  /* CUSTOM END*/
   dotenv: resolveApp('.env'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('src/index.js'),
+  appIndexJs: process.env.NODE_ENV === 'production' ?  resolveApp('src/IndexProd.js') : resolveApp('src/IndexDev.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   yarnLockFile: resolveApp('yarn.lock'),
@@ -67,12 +72,17 @@ const resolveOwn = relativePath => path.resolve(__dirname, '..', relativePath);
 
 // config before eject: we're in ./node_modules/react-scripts/config/
 module.exports = {
+  /*CUSTOM */
+  backendPath: __dirname + '/../../../../Backend/Knowit.PureEcom.Site/dist',
+  backendBuild: __dirname + '/../../../../Backend/Knowit.PureEcom.Site/dist/build',
+  appServerIndexJs: resolveApp('src/IndexServer.js'),
+  /* CUSTOM END*/
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
   appBuild: resolveApp('build'),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveApp('src/index.js'),
+  appIndexJs: process.env.NODE_ENV === 'production' ?  resolveApp('src/IndexProd.js') : resolveApp('src/IndexDev.js'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   yarnLockFile: resolveApp('yarn.lock'),
@@ -96,13 +106,20 @@ if (
   !reactScriptsLinked &&
   __dirname.indexOf(path.join('packages', 'react-scripts', 'config')) !== -1
 ) {
+
   module.exports = {
+    /*CUSTOM */
+    backendPath: __dirname + '/../../../../Backend/Knowit.PureEcom.Site/dist',
+    backendBuild: __dirname + '/../../../../Backend/Knowit.PureEcom.Site/dist/build',
+    appServerIndexJs: resolveOwn('template/src/IndexServer.js'),
+
+    /* CUSTOM END*/
     dotenv: resolveOwn('template/.env'),
     appPath: resolveApp('.'),
     appBuild: resolveOwn('../../build'),
     appPublic: resolveOwn('template/public'),
     appHtml: resolveOwn('template/public/index.html'),
-    appIndexJs: resolveOwn('template/src/index.js'),
+    appIndexJs: process.env.NODE_ENV === 'production' ?  resolveOwn('template/src/IndexProd.js') : resolveOwn('template/src/IndexDev.js'),
     appPackageJson: resolveOwn('package.json'),
     appSrc: resolveOwn('template/src'),
     yarnLockFile: resolveOwn('template/yarn.lock'),
